@@ -7,19 +7,23 @@ import { getToken } from '@/utils/auth'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  timeout: 5000, // request timeout
+  headers:{
+    'Content-Type':'application/json; charset=utf-8'
+  }
 })
 
 // request interceptor
+//请求拦截器 命令拦截器
 service.interceptors.request.use(
   config => {
     // do something before request is sent
 
     if (store.getters.token) {
-      // let each request carry token
-      // ['X-Token'] is a custom headers key
-      // please modify it according to the actual situation
-      config.headers['X-Token'] = getToken()
+      // let each request carry token 让每个请求携带令牌
+      // ['X-Token'] is a custom headers key  ['X-Token']是自定义标题键
+      // please modify it according to the actual situation 请根据实际情况进行修改
+      config.headers['token'] = localStorage.getItem('ACCESS_TOKEN')
     }
     return config
   },
@@ -30,23 +34,25 @@ service.interceptors.request.use(
   }
 )
 
-// response interceptor
+// response interceptor 响应拦截器
 service.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status
    * Please return  response => response
+   * 如果你想获得http信息，如头部或状态
+   *请返回响应=>响应
   */
 
   /**
-   * Determine the request status by custom code
+   * Determine the request status by custom code  通过自定义代码确定请求状态
    * Here is just an example
-   * You can also judge the status by HTTP Status Code
+   * You can also judge the status by HTTP Status Code  您还可以通过HTTP状态代码判断状态
    */
   response => {
     const res = response.data
 
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    // if the custom code is not 200, it is judged as an error.
+    if (res.code !== 200) {
       Message({
         message: res.message || 'Error',
         type: 'error',

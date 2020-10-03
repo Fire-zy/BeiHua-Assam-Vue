@@ -42,7 +42,8 @@ export default {
     }
   },
   created() {
-    this.fetchData()
+    // 会报错transactionList，不知道是什么作用，于是注释掉了
+    // this.fetchData()
   },
   methods: {
     fetchData() {

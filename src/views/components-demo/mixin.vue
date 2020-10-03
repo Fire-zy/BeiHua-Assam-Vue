@@ -6,21 +6,21 @@
           <span>Buttons</span>
         </div>
         <div style="margin-bottom:50px;">
-          <el-col :span="4" class="text-center">
+          <!-- <el-col :span="4" class="text-center">
             <router-link class="pan-btn blue-btn" to="/documentation/index">
               Documentation
             </router-link>
-          </el-col>
+          </el-col> -->
           <el-col :span="4" class="text-center">
             <router-link class="pan-btn light-blue-btn" to="/icon/index">
               Icons
             </router-link>
           </el-col>
-          <el-col :span="4" class="text-center">
+          <!-- <el-col :span="4" class="text-center">
             <router-link class="pan-btn pink-btn" to="/excel/export-excel">
               Excel
             </router-link>
-          </el-col>
+          </el-col> -->
           <el-col :span="4" class="text-center">
             <router-link class="pan-btn green-btn" to="/table/complex-table">
               Table

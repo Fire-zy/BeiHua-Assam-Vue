@@ -8,7 +8,6 @@
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
 
-        <error-log class="errLog-container right-menu-item hover-effect" />
 
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
 
@@ -84,6 +83,9 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
+    //  logout() {
+    //   this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    // }
     async logout() {
       await this.$store.dispatch('user/logout')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)

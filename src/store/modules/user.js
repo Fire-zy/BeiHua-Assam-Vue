@@ -28,27 +28,37 @@ const mutations = {
   }
 }
 
+// 这里修改commit和token的时候，一定不要忘记""
 const actions = {
-  // user login
-  login({ commit }, userInfo) {
-    const { username, password } = userInfo
-    return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
-    })
-  },
+ // user login
+ login({ commit }, userInfo) {
+  const { username, password } = userInfo
+  return new Promise((resolve, reject) => {
+    login({ username: username.trim(), password: password }).then(response => {
+      const { data } = response
+      const accessToken=response.data.token
 
+      localStorage.setItem('ACCESS_TOKEN',accessToken)
+      commit('SET_TOKEN', "admin-token")
+
+      setToken("admin-token")
+      resolve()
+    }).catch(error => {
+      reject(error)
+    })
+  })
+},
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      // getInfo(state.token).then(response => {
+        // const { data } = response
+        const data={
+          roles:['admin'],
+          introduction:'I am a super administrator',
+          avatar:'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+          name:'Super Admin'
+        }
 
         if (!data) {
           reject('Verification failed, please Login again.')
@@ -69,28 +79,29 @@ const actions = {
       }).catch(error => {
         reject(error)
       })
-    })
+    // })
   },
 
-  // user logout
-  logout({ commit, state, dispatch }) {
-    return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
-        removeToken()
-        resetRouter()
-
-        // reset visited views and cached views
-        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-        dispatch('tagsView/delAllViews', null, { root: true })
-
-        resolve()
-      }).catch(error => {
-        reject(error)
+    // user logout
+    logout({ commit, state, dispatch }) {
+      return new Promise((resolve, reject) => {
+        // logout(state.token).then(response => {
+          localStorage.removeItem('ACCESS_TOKEN')
+          commit('SET_TOKEN', '')
+          commit('SET_ROLES', [])
+          removeToken()
+          resetRouter()
+  
+          // reset visited views and cached views
+          // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
+          dispatch('tagsView/delAllViews', null, { root: true })
+          resolve()
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
-    })
-  },
+    },
+  
 
   // remove token
   resetToken({ commit }) {

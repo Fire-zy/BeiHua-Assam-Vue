@@ -2,16 +2,25 @@ import request from '@/utils/request'
 // 登陆
 export function login(data) {
   return request({
-    url: '/vue-element-admin/user/login',
+    url: '/data-governance-multidatasource/account/loginWithPassword',
     method: 'post',
     data
   })
 }
 // 注册
 export function regist(data) {
-  console.log(data)
   return request({
     url: '/data-governance-multidatasource/account/registry',
+    method: 'post',
+    data
+  })
+}
+
+//数据库连接测试
+export function dataconect(data) {
+  console.log(data)
+  return request({
+    url: '/data-governance-multidatasource/datasource/datasource_connect_test',
     method: 'post',
     data
   })

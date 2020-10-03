@@ -37,6 +37,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    // 代理
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
         target: `http://192.144.225.15:10032`,
@@ -46,7 +47,7 @@ module.exports = {
         }
       }
     },
-    before: require('./mock/mock-server.js')
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

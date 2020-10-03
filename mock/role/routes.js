@@ -45,31 +45,7 @@ const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/documentation',
-    component: 'layout/Layout',
-    children: [
-      {
-        path: 'index',
-        component: 'views/documentation/index',
-        name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/guide',
-    component: 'layout/Layout',
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: 'views/guide/index',
-        name: 'Guide',
-        meta: { title: 'guide', icon: 'guide', noCache: true }
-      }
-    ]
-  }
+
 ]
 
 const asyncRoutes = [
@@ -142,12 +118,7 @@ const asyncRoutes = [
         name: 'TinymceDemo',
         meta: { title: 'tinymce' }
       },
-      {
-        path: 'markdown',
-        component: 'views/components-demo/markdown',
-        name: 'MarkdownDemo',
-        meta: { title: 'markdown' }
-      },
+     
       {
         path: 'json-editor',
         component: 'views/components-demo/json-editor',
@@ -177,12 +148,6 @@ const asyncRoutes = [
         component: 'views/components-demo/sticky',
         name: 'StickyDemo',
         meta: { title: 'sticky' }
-      },
-      {
-        path: 'count-to',
-        component: 'views/components-demo/count-to',
-        name: 'CountToDemo',
-        meta: { title: 'countTo' }
       },
       {
         path: 'mixin',
@@ -313,37 +278,7 @@ const asyncRoutes = [
     ]
   },
 
-  {
-    path: '/example',
-    component: 'layout/Layout',
-    redirect: '/example/list',
-    name: 'Example',
-    meta: {
-      title: 'example',
-      icon: 'example'
-    },
-    children: [
-      {
-        path: 'create',
-        component: 'views/example/create',
-        name: 'CreateArticle',
-        meta: { title: 'createArticle', icon: 'edit' }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: 'views/example/edit',
-        name: 'EditArticle',
-        meta: { title: 'editArticle', noCache: true },
-        hidden: true
-      },
-      {
-        path: 'list',
-        component: 'views/example/list',
-        name: 'ArticleList',
-        meta: { title: 'articleList', icon: 'list' }
-      }
-    ]
-  },
+
 
   {
     path: '/tab',
@@ -384,120 +319,6 @@ const asyncRoutes = [
   },
 
   {
-    path: '/error-log',
-    component: 'layout/Layout',
-    redirect: 'noRedirect',
-    children: [
-      {
-        path: 'log',
-        component: 'views/error-log/index',
-        name: 'ErrorLog',
-        meta: { title: 'errorLog', icon: 'bug' }
-      }
-    ]
-  },
-
-  {
-    path: '/excel',
-    component: 'layout/Layout',
-    redirect: '/excel/export-excel',
-    name: 'Excel',
-    meta: {
-      title: 'excel',
-      icon: 'excel'
-    },
-    children: [
-      {
-        path: 'export-excel',
-        component: 'views/excel/export-excel',
-        name: 'ExportExcel',
-        meta: { title: 'exportExcel' }
-      },
-      {
-        path: 'export-selected-excel',
-        component: 'views/excel/select-excel',
-        name: 'SelectExcel',
-        meta: { title: 'selectExcel' }
-      },
-      {
-        path: 'export-merge-header',
-        component: 'views/excel/merge-header',
-        name: 'MergeHeader',
-        meta: { title: 'mergeHeader' }
-      },
-      {
-        path: 'upload-excel',
-        component: 'views/excel/upload-excel',
-        name: 'UploadExcel',
-        meta: { title: 'uploadExcel' }
-      }
-    ]
-  },
-
-  {
-    path: '/zip',
-    component: 'layout/Layout',
-    redirect: '/zip/download',
-    alwaysShow: true,
-    meta: { title: 'zip', icon: 'zip' },
-    children: [
-      {
-        path: 'download',
-        component: 'views/zip/index',
-        name: 'ExportZip',
-        meta: { title: 'exportZip' }
-      }
-    ]
-  },
-
-  {
-    path: '/pdf',
-    component: 'layout/Layout',
-    redirect: '/pdf/index',
-    children: [
-      {
-        path: 'index',
-        component: 'views/pdf/index',
-        name: 'PDF',
-        meta: { title: 'pdf', icon: 'pdf' }
-      }
-    ]
-  },
-  {
-    path: '/pdf/download',
-    component: 'views/pdf/download',
-    hidden: true
-  },
-
-  {
-    path: '/theme',
-    component: 'layout/Layout',
-    redirect: 'noRedirect',
-    children: [
-      {
-        path: 'index',
-        component: 'views/theme/index',
-        name: 'Theme',
-        meta: { title: 'theme', icon: 'theme' }
-      }
-    ]
-  },
-
-  {
-    path: '/clipboard',
-    component: 'layout/Layout',
-    redirect: 'noRedirect',
-    children: [
-      {
-        path: 'index',
-        component: 'views/clipboard/index',
-        name: 'ClipboardDemo',
-        meta: { title: 'clipboardDemo', icon: 'clipboard' }
-      }
-    ]
-  },
-
-  {
     path: '/i18n',
     component: 'layout/Layout',
     children: [
@@ -510,16 +331,6 @@ const asyncRoutes = [
     ]
   },
 
-  {
-    path: 'external-link',
-    component: 'layout/Layout',
-    children: [
-      {
-        path: 'https://github.com/PanJiaChen/vue-element-admin',
-        meta: { title: 'externalLink', icon: 'link' }
-      }
-    ]
-  },
 
   { path: '*', redirect: '/404', hidden: true }
 ]

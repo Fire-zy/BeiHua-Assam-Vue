@@ -10,7 +10,7 @@ export default {
     icons: 'アイコン',
     components: 'コンポーネント',
     tinymce: 'TinyMCE',
-    markdown: 'Markdown',
+    // markdown: 'Markdown',
     jsonEditor: 'JSON Editor',
     dndList: 'Drag-And-Drop',
     splitPane: 'パネル',
