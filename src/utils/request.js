@@ -7,7 +7,7 @@ import { getToken } from '@/utils/auth'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000, // request timeout
+  timeout:8000, // request timeout
   headers:{
     'Content-Type':'application/json; charset=utf-8'
   }
@@ -23,7 +23,7 @@ service.interceptors.request.use(
       // let each request carry token 让每个请求携带令牌
       // ['X-Token'] is a custom headers key  ['X-Token']是自定义标题键
       // please modify it according to the actual situation 请根据实际情况进行修改
-      config.headers['token'] = localStorage.getItem('ACCESS_TOKEN')
+      config.headers['Token'] = localStorage.getItem('ACCESS_TOKEN')
     }
     return config
   },

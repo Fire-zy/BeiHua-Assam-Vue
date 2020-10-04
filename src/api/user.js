@@ -17,10 +17,36 @@ export function regist(data) {
 }
 
 //数据库连接测试
-export function dataconect(data) {
-  console.log(data)
+export function dataconnect(data) {
   return request({
     url: '/data-governance-multidatasource/datasource/datasource_connect_test',
+    method: 'post',
+    data
+  })
+}
+
+// 添加数据源
+export function addsource(data) {
+  return request({
+    url: '/data-governance-multidatasource/datasource/add',
+    method: 'post',
+    data
+  })
+}
+
+//获取数据源
+export function querysource() {
+  return request({
+    url: '/data-governance-multidatasource/datasource/get_all_db',
+    method: 'get',
+  })
+}
+
+// 删除数据源
+
+export function remove(data) {
+  return request({
+    url: '/data-governance-multidatasource/datasource/remove',
     method: 'post',
     data
   })

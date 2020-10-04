@@ -168,19 +168,27 @@ export const asyncRoutes = [
   nestedRouter,
   tableRouter,
 
-// 添加数据源
+// ViewList
   {
-    path: '/adddatasource',
+    path: '/viewlist',
     component: Layout,
     children: [
       {
-        path: '/adddatasource',
-        name: 'adddatasource',
-        component: () => import('@/views/adddatasource/adddatasource'),
-        meta: { title: 'AdddataSource', icon: '配置数据源' }
+        path: 'viewlist',
+        name: 'viewlist',
+        component: () => import('@/views/viewlist/viewlist'),
+        meta: { title: 'View List', icon: '配置数据源' }
+      },
+      {
+        path: 'sqledit',
+        name: 'sqledit',
+        component: () => import('@/views/viewlist/sqledit'),
+        meta: { title: 'Sql List',noCache: true, icon: 'edit' },//nocache取消权限的限制
+        hidden:true
       }
     ]
   },
+
 
   {
     path: '/tab',

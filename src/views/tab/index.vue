@@ -16,7 +16,7 @@
             circle
           ></el-button>
           <!-- 打开添加的表单 -->
-          <el-dialog  title="新增source" :visible.sync="dialogFormVisible" @close="resetForm('form')">
+          <el-dialog :lock-scroll="false"  title="新增source" :visible.sync="dialogFormVisible" @close="resetForm('form')">
             <el-form :model="form" ref="form" class="demo-ruleForm">
               <el-form-item 
               label="名称" 
@@ -67,14 +67,13 @@
             
 
             <div slot="footer" class="dialog-footer">
-              <!-- <el-button @click="dialogFormVisible = false">取 消</el-button> -->
               <el-button @click="resetForm('form')">重置</el-button>
               <el-button type="primary" @click="submitForm('form')">提交</el-button>
             </div>
           </el-dialog>
         </div>
       </div>
-      <add-data></add-data>
+      <source-table  ref='child'></source-table>
       <el-pagination background layout="prev, pager, next" :total="1000">
       </el-pagination>
     </el-tabs>
@@ -82,9 +81,9 @@
 </template>
 
 <script>
-import {dataconect} from '@/api/user'
+import {dataconnect,addsource,querysource} from '@/api/user'
 import TabPane from "./components/TabPane";
-import AddData from "@/components/AddDataSource";
+import SourceTable from "@/components/Table/sourcetable";
 import waves from "@/directive/waves/index.js"; // 水波纹指令
 
 export default {
@@ -92,20 +91,17 @@ export default {
   directives: {
     waves,
   },
-  components: { TabPane, AddData },
+  components: { TabPane, SourceTable },
   data() {
     return {
       dialogFormVisible: false,
-       numberValidateForm: {
-          age: ''
-        },
       form: {
-        sourceName: "",
+        sourceName: "zytest",
         dataSourceType: "mysql",
         username: "root",
-        password: "uoUSyAEdtKnNwHZVccfz8eTeaVhOLHJ2",
-        driverClassName: "com.mysql.jdbc.Driver",
-        dataSourceUrl: "jdbc:mysql://localhost:10000/davinci?useSSL=false",
+        password: "1lLsuiB9S6w6tvCxQVq9Pi1tzLcZsLTP3fPWiaSVBvekADGgePX881qnI6Lp",
+        driverClassName: "com.mysql.cj.jdbc.Driver",
+        dataSourceUrl: "jdbc:mysql://39.96.79.148:3308/data_governance?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false",
       },
       
       formLabelWidth: "120px",
@@ -115,13 +111,19 @@ export default {
   created() {},
   methods: {
     ceshi(){
-      dataconect({
+      dataconnect({
         'dataSourceType':this.form.dataSourceType,
         'username':this.form.username,
         'password':this.form.password,
         'driverClassName':this.form.driverClassName,
         'dataSourceUrl':this.form.dataSourceUrl,
       }).then(resp=>{
+        if(resp.code==200){
+          this.$message({
+            message: '测试成功',
+            type: 'success'
+          });
+        }
         
       })
     },
@@ -131,11 +133,17 @@ export default {
     submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            
-            alert('submit!');
-            this.$refs[formName].resetFields();
-            this.dialogFormVisible = false
-            
+            addsource(this.form).then(resp=>{
+              if(resp.code==200){
+                this.$refs.child.getList();
+                this.$message({
+                  message: '添加成功',
+                  type: 'success'
+                });
+                this.$refs[formName].resetFields();
+                this.dialogFormVisible = false
+              }
+            })
           } else {
             console.log('error submit!!');
             return false;
@@ -163,6 +171,7 @@ export default {
 .tab-container {
   margin: 30px;
 }
+
 
 .ceshi{
   margin-left: 120px;

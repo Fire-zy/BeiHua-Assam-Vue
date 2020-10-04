@@ -231,9 +231,7 @@ $cursor: #fff;
 
 /* reset element-ui css */
 // 弹窗的大小
-.el-dialog {
-  width: 35%;
-}
+
 .content-box {
   .el-input {
     display: inline-block;
@@ -276,6 +274,10 @@ $light_gray: #eee;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
+
+  .el-dialog {
+    width: 35%;
+  }
 
   .login-form {
     position: relative;
