@@ -12,24 +12,95 @@
     <div class="main">
       <!-- 区域左边 -->
       <div class="main-left">
-        <!-- 数据试图表单 -->
-        <div class="dataForm">dataform</div>
-        <!-- 数据源信息 -->
-        <div class="dataInformation">dataInformation</div>
+          <!-- 数据试图表单 -->
+          <el-col >
+            <el-card class="dataForm" shadow="hover">
+              <div>
+                <el-form ref="form" :model="form" label-width="80px">
+                  <el-input placeholder="人员信息" v-model="form.name"></el-input>
+                  <el-input placeholder="演示人员信息" v-model="form.showname"></el-input>
+                  <el-select v-model="form.region" placeholder="请选择活动区域">
+                    <el-option label="区域一" value="shanghai"></el-option>
+                    <el-option label="区域二" value="beijing"></el-option>
+                  </el-select>
+              </el-form>
+              </div>
+            </el-card>
+          </el-col>
+
+          <!-- 数据源信息 -->
+          <el-col>
+            <el-card class="dataInformation" shadow="hover">
+              <div>
+                  <el-input
+                    placeholder="请输入内容"
+                    prefix-icon="el-icon-search"
+                    v-model="input1">
+                  </el-input>
+              </div>
+            </el-card>
+          </el-col>
       </div>
+
       <!-- 区域右边 -->
       <div class="main-right">
         <!-- sql编辑 -->
         <div class="sqleditor-box">
           <!-- SQL编辑区 -->
-          <div class="sqledit">sqledit</div>
+          <el-col>
+            <el-card class="sqledit" shadow="hover">
+              <div>
+                <el-input
+                v-model="inputsql" 
+                type="textarea"
+                :autosize="{ minRows: 11, maxRows: 16}"
+                placeholder="请输入内容"></el-input>
+              </div>
+            </el-card>
+          </el-col>
+          
           <!-- 变量声明区 -->
-          <div class="variable">variable</div>
+          <el-col>
+            <el-card class="variable" shadow="hover">
+               <div>
+                 <div class="variable-header">
+                   <div>变量</div>
+                   <div>+</div>
+                 </div>
+               </div>
+            </el-card>
+          </el-col>
+         
         </div>
         <!-- 数据展示区 -->
-        <div class="showdata">showdata</div>
+        
+        <el-col>
+          <el-card class="showdata" shadow="hover">
+              <div>showdata</div>
+          </el-card>
+        </el-col>
         <!-- 底部操作 -->
-        <div class="main-bottom">bottom</div>
+        
+        <el-col class="bottom-card">
+          <el-card class="main-bottom" shadow="hover">
+              <div>
+                <div>
+                  <!-- <el-pagination
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page.sync="currentPage2"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="sizes, prev, pager, next"
+                    :total="1000">
+                  </el-pagination> -->
+                </div>
+                <div>
+
+                </div>
+              </div>
+          </el-card>
+        </el-col>
       </div>
     </div>
 
@@ -54,7 +125,18 @@ export default {
   components: {   },
   data() {
     return {
-      active: 0
+      active: 0,
+      input1:'',
+      inputsql:'',
+      form: {
+          name: '',
+          showname:'',
+          region: ''
+      },
+      currentPage1: 5,
+      currentPage2: 5,
+      currentPage3: 5,
+      currentPage4: 4
     };
   },
   watch: {},
@@ -62,6 +144,12 @@ export default {
   methods: {
     next() {
       if (this.active++ > 2) this.active = 0;
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
     },
     // 重置
     resetForm(formName) {
@@ -97,55 +185,79 @@ export default {
 .main-left{
   width: 20%;
   height: 550px;
+  margin: 5px;
 }
 
 .dataForm{
   width: 100%;
-  height: 40%;
-  background-color: blueviolet;
+  height: 180px;
+  margin-bottom: 10px;
+  background-color: #eaedf1;
 }
 
 .dataInformation{
   width: 100%;
-  height: 60%;
-  background-color: rgb(226, 43, 171);
+  height: 380px;
+  background-color: #eaedf1;
 }
 
 /* 右边样式 */
 .main-right{
   width: 80%;
   height: 550px;
-  background-color: rgb(43, 255, 0);
+  margin: 5px;
 }
 
 .sqleditor-box{
   display: flex;
   width: 100%;
-  height: 50%;
-  background-color: rgb(0, 68, 255);
+  height: 270px;
+  margin-bottom: 10px;
 }
 
  .sqledit{
-  width: 70%;
+  width: 620px;
   height: 100%;
-  background-color: rgb(0, 174, 255);
+  margin-right: 10px;
 } 
+
+.demo-input-size{
+  width: 600px;
+  height: 260px;
+}
  
  .variable{
-  width: 30%;
+  width: 280px;
   height: 100%;
-  background-color: rgb(94, 255, 0);
+  background-color: #eaedf1;
 } 
+
+.variable-header{
+  display: flex;
+  justify-content: space-between;
+}
 
 .showdata{
   width: 100%;
-  height: 40%;
-  background-color: rgb(255, 94, 0);
+  height: 240px;
 }
 
 .main-bottom{
   width: 100%;
-  height: 10%;
-  background-color: rgb(43, 255, 0);
+  /* height: 10%; */
+  margin-top: 10px;
+  /* padding:0; */
+  background-color: #eaedf1;
+  
+}
+
+/* .bottom-card{
+  padding: 0;
+} */
+
+
+/* 修改input框 */
+.el-input{
+  margin-bottom: 15px;
 }
 </style>
