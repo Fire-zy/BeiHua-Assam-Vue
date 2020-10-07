@@ -101,6 +101,7 @@ export default {
 .social-signup-container {
   margin: 20px 0;
 
+
   // .el-form{
   //   width: 520px;
   // }

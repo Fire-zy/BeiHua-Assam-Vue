@@ -52,6 +52,27 @@ export function remove(data) {
   })
 }
 
+//获取数据源表名列名
+
+export function getSourceList(data) {
+  return request({
+    url: '/data-governance-multidatasource/datasource/table_info_with_source_id',
+    method: 'post',
+    data
+  })
+}
+
+//SQL执行测试
+
+export function sqlTest(data) {
+  return request({
+    url: '/data-governance-multidatasource/sql/sql_test',
+    method: 'post',
+    data
+  })
+}
+
+
 export function getInfo(token) {
   return request({
     url: '/vue-element-admin/user/info',

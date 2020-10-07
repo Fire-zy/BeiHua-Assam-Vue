@@ -95,11 +95,12 @@
       </el-form>
     </div>
     <el-dialog
+      width="35%"
       class="dialog-box"
       :title="$t('login.thirdparty')"
       :visible.sync="showDialog"
     >
-    
+    <!-- 表单嵌套 -->
       <social-sign @show='toShowDialog'/>
     </el-dialog>
   </div>
