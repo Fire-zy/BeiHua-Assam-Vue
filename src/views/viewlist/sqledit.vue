@@ -12,18 +12,18 @@
       </el-steps>
     </div>
 
-    <view-card></view-card>
+    <sql-card></sql-card>
   </div>
 </template>
 
 <script>
 import { getSourceList, dataconnect, addsource, querysource } from "@/api/user";
 import waves from "@/directive/waves/index.js"; // 水波纹指令
-import ViewCard from "@/components/ViewCard";
+import SqlCard from "@/components/SqlCard";
 
 export default {
   name: "sqledit",
-  components: { ViewCard },
+  components: { SqlCard },
   data(){
     return{
       active: 0,

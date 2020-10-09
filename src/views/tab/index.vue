@@ -73,6 +73,7 @@
           </el-dialog>
         </div>
       </div>
+      <!-- 调用sourceTable -->
       <source-table  ref='child'></source-table>
       <el-pagination background layout="prev, pager, next" :total="1000">
       </el-pagination>
@@ -83,7 +84,7 @@
 <script>
 import {dataconnect,addsource,querysource} from '@/api/user'
 import TabPane from "./components/TabPane";
-import SourceTable from "@/components/Table/sourcetable";
+import SourceTable from "@/components/SourceList/sourcetable";
 import waves from "@/directive/waves/index.js"; // 水波纹指令
 
 export default {

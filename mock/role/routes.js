@@ -90,19 +90,6 @@ const asyncRoutes = [
   },
 
   {
-    path: '/icon',
-    component: 'layout/Layout',
-    children: [
-      {
-        path: 'index',
-        component: 'views/icons/index',
-        name: 'Icons',
-        meta: { title: 'icons', icon: 'icon', noCache: true }
-      }
-    ]
-  },
-
-  {
     path: '/components',
     component: 'layout/Layout',
     redirect: 'noRedirect',
@@ -112,73 +99,6 @@ const asyncRoutes = [
       icon: 'component'
     },
     children: [
-      {
-        path: 'tinymce',
-        component: 'views/components-demo/tinymce',
-        name: 'TinymceDemo',
-        meta: { title: 'tinymce' }
-      },
-     
-      {
-        path: 'json-editor',
-        component: 'views/components-demo/json-editor',
-        name: 'JsonEditorDemo',
-        meta: { title: 'jsonEditor' }
-      },
-      {
-        path: 'split-pane',
-        component: 'views/components-demo/split-pane',
-        name: 'SplitpaneDemo',
-        meta: { title: 'splitPane' }
-      },
-      {
-        path: 'avatar-upload',
-        component: 'views/components-demo/avatar-upload',
-        name: 'AvatarUploadDemo',
-        meta: { title: 'avatarUpload' }
-      },
-      {
-        path: 'dropzone',
-        component: 'views/components-demo/dropzone',
-        name: 'DropzoneDemo',
-        meta: { title: 'dropzone' }
-      },
-      {
-        path: 'sticky',
-        component: 'views/components-demo/sticky',
-        name: 'StickyDemo',
-        meta: { title: 'sticky' }
-      },
-      {
-        path: 'mixin',
-        component: 'views/components-demo/mixin',
-        name: 'ComponentMixinDemo',
-        meta: { title: 'componentMixin' }
-      },
-      {
-        path: 'back-to-top',
-        component: 'views/components-demo/back-to-top',
-        name: 'BackToTopDemo',
-        meta: { title: 'backToTop' }
-      },
-      {
-        path: 'drag-dialog',
-        component: 'views/components-demo/drag-dialog',
-        name: 'DragDialogDemo',
-        meta: { title: 'dragDialog' }
-      },
-      {
-        path: 'drag-select',
-        component: 'views/components-demo/drag-select',
-        name: 'DragSelectDemo',
-        meta: { title: 'dragSelect' }
-      },
-      {
-        path: 'dnd-list',
-        component: 'views/components-demo/dnd-list',
-        name: 'DndListDemo',
-        meta: { title: 'dndList' }
-      },
       {
         path: 'drag-kanban',
         component: 'views/components-demo/drag-kanban',
@@ -277,9 +197,6 @@ const asyncRoutes = [
       }
     ]
   },
-
-
-
   {
     path: '/tab',
     component: 'layout/Layout',
