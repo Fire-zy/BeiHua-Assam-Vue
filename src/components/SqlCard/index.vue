@@ -9,22 +9,7 @@
       <sql-editor @sqleditor="sqleditor" ref="child"></sql-editor>
       <sql-table></sql-table>
       <!-- 底部操作 -->
-      <el-card body-style="padding:15px" class="main-bottom" shadow="hover">
-        <div class="bottom-card">
-          <div class="page">展示前500条数据</div>
-          <div class="btnbox">
-            <el-button @click="back">上一步</el-button>
-            <el-button>取 消</el-button>
-            <el-button
-              @click="sqltest"
-              class="el-icon-caret-right"
-              type="primary"
-              >执 行</el-button
-            >
-            <el-button @click="next">下一步</el-button>
-          </div>
-        </div>
-      </el-card>
+      <bottom-card></bottom-card>
     </div>
   </div>
 </template>
@@ -42,12 +27,13 @@ import waves from "@/directive/waves/index.js"; // 水波纹指令
 import SqlTable from "@/components/SqlCard/SqlTable";
 import InfoList from "@/components/SqlCard/InfoList";
 import SqlEditor from "@/components/SqlCard/SqlEditor";
+import BottomCard from "@/components/SqlCard/BottomCard";
 
 export default {
   directives: {
     waves,
   },
-  components: { SqlTable, InfoList, SqlEditor },
+  components: { SqlTable, InfoList, SqlEditor,BottomCard   },
   data() {
     return {
       sqlStr:'',
@@ -61,15 +47,7 @@ export default {
   },
   created() {},
   methods: {
-    //  sql测试
-    sqltest() {
-      //触发子组件传sql过来
-      this.$refs.child.toSql();
-      sqlTest({
-        tenantDatasourceConfigId: this.tenantDatasourceConfigId,
-        sqlStr: this.sqlStr,
-      }).then((resp) => {});
-    },
+    
     infolistMsg(msg){
       this.tenantDatasourceConfigId=msg
     },
@@ -87,15 +65,14 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-
-    //下一步
-    next() {
+    //上一步
+      back() {
+          this.$parent.back();
+      },
+      //下一步
+      next() {
       this.$parent.next();
-    },
-    //上一部
-    back() {
-      this.$parent.back();
-    },
+      },
   },
 };
 </script>
@@ -115,21 +92,7 @@ export default {
   margin: 5px;
 }
 
-.main-bottom {
-  width: 100%;
-  margin-top: 10px;
-  background-color: #eaedf1;
-}
 
-.bottom-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.el-pagination {
-  padding: 0;
-}
 
 /* 滚动条 */
 .el-scrollbar .el-scrollbar__wrap {

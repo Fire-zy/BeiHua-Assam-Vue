@@ -12,7 +12,8 @@
       </el-steps>
     </div>
 
-    <sql-card></sql-card>
+    <sql-card v-if="flag"></sql-card>
+    <data-model v-else></data-model>
   </div>
 </template>
 
@@ -20,12 +21,14 @@
 import { getSourceList, dataconnect, addsource, querysource } from "@/api/user";
 import waves from "@/directive/waves/index.js"; // 水波纹指令
 import SqlCard from "@/components/SqlCard";
+import DataModel from "@/components/DataModel";
 
 export default {
   name: "sqledit",
-  components: { SqlCard },
+  components: { SqlCard,DataModel },
   data(){
     return{
+      flag:true,
       active: 0,
     }
   },
@@ -33,11 +36,13 @@ export default {
     //下一步
     next() {
       if (this.active++ > 2) this.active = 0;
+      this.flag=false
     },
     //上一步
     back(){
       --this.active
       if (this.active < 0) this.active = 0;
+      this.flag=true
     }
   }
 };
